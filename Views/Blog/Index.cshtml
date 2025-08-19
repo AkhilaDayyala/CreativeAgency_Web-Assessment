@@ -1,0 +1,38 @@
+﻿@model List<Web.CreativeAgency.Models.BlogPost>
+@{
+    ViewData["Title"] = "Blog – Creative Agency";
+    ViewData["MetaDescription"] = "Insights on SEO, content, social media and web dev.";
+}
+<h2>Our Blog</h2>
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <label for="categoryFilter" class="form-label">Filter by Category</label>
+        <select id="categoryFilter" class="form-select">
+            <option value="all">All</option>
+            <option value="seo">SEO Optimization</option>
+            <option value="content">Content Marketing</option>
+            <option value="social">Social Media</option>
+            <option value="web">Web Development</option>
+        </select>
+    </div>
+    <div class="col-md-6">
+        <label for="sortDate" class="form-label">Sort by</label>
+        <select id="sortDate" class="form-select">
+            <option value="desc">Newest First</option>
+            <option value="asc">Oldest First</option>
+        </select>
+    </div>
+</div>
+
+<div id="blogList">
+    @foreach (var p in Model)
+    {
+        <div class="blog-post" data-category="@p.Category" data-date="@p.PublishedOn.ToString("yyyy-MM-dd")">
+            <h4><a asp-controller="Blog" asp-action="Detail" asp-route-slug="@p.Slug">@p.Title</a></h4>
+            <p>@p.Excerpt</p>
+            <small>Published on: @p.PublishedOn:dd MMM yyyy</small>
+        </div>
+        <hr />
+    }
+</div>

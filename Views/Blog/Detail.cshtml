@@ -1,0 +1,9 @@
+﻿@model Web.CreativeAgency.Models.BlogPost
+@{
+    ViewData["Title"] = $"{Model.Title} – Creative Agency";
+    ViewData["MetaDescription"] = Model.Excerpt;
+}
+<h2>@Model.Title</h2>
+<p class="text-muted">@Model.PublishedOn:dd MMM yyyy • @Model.Category.ToUpperInvariant()</p>
+<p>@Model.Content</p>
+<p><a asp-controller="Blog" asp-action="Index">← Back to Blog</a></p>

@@ -1,0 +1,47 @@
+﻿@model Web.CreativeAgency.Models.ContactFormModel
+
+<h1>Contact Us</h1>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<form asp-action="Index" method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="mb-3">
+        <label asp-for="FirstName" class="form-label">First Name</label>
+        <input asp-for="FirstName" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="LastName" class="form-label">Last Name</label>
+        <input asp-for="LastName" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label">Email</label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="EnquiryType" class="form-label">Enquiry Type</label>
+        <select asp-for="EnquiryType" class="form-select">
+            <option value="">-- Select --</option>
+            <option value="General">General</option>
+            <option value="Support">Support</option>
+            <option value="Business">Business</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Summary" class="form-label">Message</label>
+        <textarea asp-for="Summary" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
